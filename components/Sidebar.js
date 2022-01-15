@@ -3,9 +3,9 @@ import {
   SearchIcon,
   LibraryIcon,
   PlusCircleIcon,
-  HeartIcon,
   RssIcon,
 } from "@heroicons/react/outline";
+import { HeartIcon } from "@heroicons/react/solid";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -15,7 +15,7 @@ import useSpotify from "../hooks/useSpotify";
 function Sidebar() {
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState();
-  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
+  const [, setPlaylistId] = useRecoilState(playlistIdState);
   const spotifyApi = useSpotify();
 
   useEffect(() => {
@@ -25,9 +25,9 @@ function Sidebar() {
       });
     }
   }, [session, spotifyApi]);
-  console.log("you lick playlist...", playlistId);
+
   return (
-    <div className="text-gray-500 p-5 text-xs lg:text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex">
+    <div className="text-gray-500 p-5 text-xs lg:text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36">
       <div className="space-y-4">
         <button className="flex items-center space-x-2 hover:text-white">
           <HomeIcon className="h-5 w-5" />
@@ -47,11 +47,11 @@ function Sidebar() {
           <p>Create Playlist</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-white">
-          <HeartIcon className="h-5 w-5" />
+          <HeartIcon className="h-5 w-5 text-blue-500" />
           <p>Liked Songs</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-white">
-          <RssIcon className="h-5 w-5" />
+          <RssIcon className="h-5 w-5 text-green-500" />
           <p>Your episodes</p>
         </button>
         <hr className="border-t-[0.1px] border-gray-900" />
